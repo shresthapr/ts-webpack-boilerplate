@@ -1,4 +1,4 @@
-export interface Pet {
+interface Pet {
     name: string,
     age: number,
     height?: number,
@@ -9,10 +9,16 @@ export interface Pet {
 }
 
 export interface Dog extends Pet {
+    type: string,
     sporty: boolean,
     bark: () => void
 }
 
 export interface Cat extends Pet {
+    type: string,
     purr: () => void
+}
+
+export interface QuestionableAnimalThatAlsoPurr extends Pet {
+    purr: () => string
 }
