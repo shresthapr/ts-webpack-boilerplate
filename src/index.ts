@@ -1,8 +1,26 @@
-import { ComputerOne } from "./Classes/ComputerOne";
-import { ComputerTwo } from "./Classes/ComputerTwo";
+import { Dog, Cat } from "./Interfaces/pet.interfaces";
+import { cats, dogs } from "./Services/pet.data";
 
-console.log("hello world");
+//Array of Pets
+const pets: Array<Dog | Cat> = [...dogs, ...cats];
 
-let computerOne: ComputerOne = new ComputerOne(1);
-let computerTwo: ComputerTwo = new ComputerTwo(computerOne);
-computerTwo.printConversion(3);
+//Adopt function
+const adopt = (subject: Dog): void => {
+  console.log(
+    `We have adopted a dog: ${subject.name}, he/she is ${subject.age} years old, vaccinated and is sporty.`
+  );
+};
+dogs.forEach((dog) => {
+  adopt(dog);
+});
+
+const isDog = (pet: Cat | Dog) => {
+  return Boolean((pet as Dog).bark);
+};
+
+const isCat = (pet: Cat | Dog): boolean => Boolean((pet as Cat).purr);
+
+pets.forEach((pet) => {
+  if (isDog(pet)) console.log("Dog!!!");
+  else console.log("Cat!!!");
+});
