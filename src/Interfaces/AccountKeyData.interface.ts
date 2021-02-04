@@ -1,9 +1,10 @@
 export interface Key {
   equals: (sample: Key) => boolean;
+
+  getNumber: () => number;
 }
 
 export interface UserAccount {
-  key: Key;
   balance: number;
   name?: string;
   accountNo?: number;
