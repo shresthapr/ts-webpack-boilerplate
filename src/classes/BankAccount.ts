@@ -1,4 +1,3 @@
-import { Keybank } from "./Keybank";
 import { Key, UserAccount } from "../Interfaces/AccountKeyData.interface";
 
 export class BankAccount implements UserAccount {

@@ -17,6 +17,6 @@ export interface UserAccount {
 export interface DataStore {
   userlogs: UserAccount[];
   insert: (account: UserAccount) => boolean;
-  find: (key: Key) => UserAccount;
+  search: (key: Key) => UserAccount | undefined;
   delete: (key: Key) => boolean;
 }

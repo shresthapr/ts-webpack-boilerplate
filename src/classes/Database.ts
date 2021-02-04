@@ -1,28 +1,30 @@
-// import { Keybank } from "./Keybank";
-// import {
-//   Key,
-//   DataStore,
-//   UserAccount,
-// } from "../Interfaces/AccountKeyData.interface";
-// import { BankAccount } from "./BankAccount";
+import {
+  Key,
+  DataStore,
+  UserAccount,
+} from "../Interfaces/AccountKeyData.interface";
 
-// export class Database implements DataStore {
-//   userlogs: UserAccount[] = [];
+export class Database implements DataStore {
+  userlogs: UserAccount[] = [];
+  //passing an argument here in constructor means when a new instance of class
+  //Database is made it has to be made with those arguments.
+  constructor() {}
 
-//   constructor(acc: BankAccount, k: Key) {
-//     this.account = acc;
-//     this.key = k;
-//   }
+  insert(account: UserAccount): boolean {
+    const ifmatch = this.search(account.getKey());
+    if (Boolean(ifmatch)) return false;
 
-//   insert(account: UserAccount): boolean {
-//     if (account) {
-//     }
-//     return true;
-//   }
+    this.userlogs.push(account);
+    return true;
+  }
 
-//   find(key: Key): void {}
+  search(key: Key): UserAccount | undefined {
+    return this.userlogs.find((item) => item.getKey().equals(key));
+  }
 
-//   delete(key: Key): boolean {
-//     return true;
-//   }
-// }
+  delete(key: Key): boolean {
+    const match = this.search(key);
+    this.userlogs = this.userlogs.filter((item) => !item.getKey().equals(key));
+    return Boolean(match);
+  }
+}
